@@ -1,1599 +1,1493 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <title>Balayan, Batangas · Heritage Capital by the Bay</title>
-    <!-- Font Awesome 6 (free) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- AOS Library for smooth animations -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
-            max-width: 100%;
-        }
-
-        html,
-        body {
-            overflow-x: hidden;
-            width: 100%;
-            position: relative;
-        }
-
-        body {
-            background-color: #ffffff;
-            color: #1e2b3c;
-            line-height: 1.5;
-            width: 100%;
-        }
-
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            width: 100%;
-        }
-
-        :root {
-            --balayan-white: #ffffff;
-            --balayan-blue: #1e4b8c;
-            --balayan-red: #c22d3e;
-            --soft-blue: #e6f0ff;
-            --soft-red: #fff1f0;
-            --header-height: 70px;
-        }
-
-        .main-header {
-            background: var(--balayan-white);
-            padding: 0.8rem 0;
-            border-bottom: 4px solid var(--balayan-blue);
-            box-shadow: 0 2px 10px rgba(0, 20, 40, 0.02);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            height: auto;
-            min-height: var(--header-height);
-        }
-
-        .header-flex {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .logo-area {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            cursor: pointer;
-        }
-
-        .logo-icon {
-            width: 48px;
-            height: 48px;
-            min-width: 48px;
-            min-height: 48px;
-            border-radius: 50%;
-            background: var(--balayan-red);
-            /* fallback */
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 8px rgba(194, 45, 62, 0.2);
-        }
-
-        .logo-icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-
-        .logo-text h1 {
-            font-size: 1.8rem;
-            font-weight: 600;
-            letter-spacing: -0.5px;
-            color: #0f172a;
-            line-height: 1.2;
-        }
-
-        .logo-text .subhead {
-            color: var(--balayan-blue);
-            font-weight: 500;
-            font-size: 0.8rem;
-            letter-spacing: 1px;
-        }
-
-        .logo-text .subhead i {
-            color: var(--balayan-red);
-            margin-right: 4px;
-        }
-
-        /* Mobile menu toggle button */
-        .mobile-menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.8rem;
-            color: var(--balayan-blue);
-            cursor: pointer;
-            padding: 0.5rem;
-            transition: transform 0.2s;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .nav-item {
-            position: relative;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            font-weight: 500;
-            color: #1e293b;
-            font-size: 1.1rem;
-            padding: 0.5rem 0;
-            transition: 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-
-        .nav-links a i {
-            font-size: 0.8rem;
-            color: var(--balayan-blue);
-        }
-
-        .nav-links a:hover {
-            color: var(--balayan-blue);
-        }
-
-        .dropdown-content {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: white;
-            min-width: 260px;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(30, 75, 140, 0.15);
-            padding: 0.8rem 0;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.2s;
-            z-index: 1000;
-        }
-
-        .nav-item:hover .dropdown-content {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .dropdown-content a {
-            display: block;
-            padding: 0.6rem 1.5rem;
-            font-size: 0.95rem;
-            color: #1e293b;
-            border-left: 3px solid transparent;
-        }
-
-        .dropdown-content a:hover {
-            background: var(--soft-blue);
-            border-left-color: var(--balayan-red);
-            color: var(--balayan-blue);
-        }
-
-        .header-cta {
-            background: var(--balayan-blue);
-            color: white;
-            border: none;
-            padding: 0.5rem 1.2rem;
-            border-radius: 40px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(30, 75, 140, 0.2);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            letter-spacing: 0.3px;
-            transition: 0.2s;
-            white-space: nowrap;
-        }
-
-        .header-cta:hover {
-            background: #154078;
-            transform: translateY(-2px);
-        }
-
-        /* Mobile styles */
-        @media (max-width: 768px) {
-            .main-header {
-                padding: 0.5rem 0;
-                min-height: 60px;
-            }
-
-            .logo-icon {
-                width: 40px;
-                height: 40px;
-                min-width: 40px;
-                min-height: 40px;
-            }
-
-            .logo-text h1 {
-                font-size: 1.4rem;
-            }
-
-            .logo-text .subhead {
-                font-size: 0.7rem;
-            }
-
-            .mobile-menu-toggle {
-                display: block;
-            }
-
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                gap: 0;
-                background: white;
-                padding: 0;
-                border-top: 1px solid var(--soft-blue);
-                margin-top: 0.5rem;
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height 0.4s ease-in-out, padding 0.3s ease;
-            }
-
-            .nav-links.show {
-                display: flex;
-                max-height: 80vh;
-                /* large enough for all items */
-                padding: 1rem 0;
-                overflow-y: auto;
-            }
-
-            .nav-item {
-                width: 100%;
-            }
-
-            .nav-links a {
-                padding: 0.8rem 1.5rem;
-                width: 100%;
-                justify-content: space-between;
-                font-size: 1rem;
-            }
-
-            .dropdown-content {
-                position: static;
-                opacity: 1;
-                visibility: visible;
-                transform: none;
-                box-shadow: none;
-                border: none;
-                background: var(--soft-blue);
-                margin: 0;
-                padding: 0;
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height 0.3s ease-out;
-                border-radius: 0;
-                width: 100%;
-            }
-
-            .dropdown-content.show {
-                max-height: 500px;
-                /* large enough to show all items */
-                padding: 0.5rem 0;
-            }
-
-            .dropdown-content a {
-                padding: 0.8rem 2rem;
-                font-size: 0.9rem;
-            }
-
-            .nav-item:hover .dropdown-content {
-                /* Disable hover on mobile */
-                opacity: 1;
-                visibility: visible;
-                transform: none;
-            }
-
-            .header-cta {
-                display: none;
-                /* hide on mobile - can be moved into menu if desired */
-            }
-        }
-
-        /* Extra small devices */
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 1rem;
-            }
-
-            .hero-content h2 {
-                font-size: 2rem;
-            }
-
-            .btn-primary,
-            .btn-outline {
-                padding: 0.6rem 1.5rem;
-                font-size: 1rem;
-            }
-        }
-
-        .hero {
-            background: var(--balayan-white);
-            padding: 3rem 0 4rem 0;
-        }
-
-        .hero-grid {
-            display: flex;
-            align-items: center;
-            gap: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .hero-content {
-            flex: 1 1 350px;
-        }
-
-        .hero-content .tag {
-            display: inline-block;
-            background: var(--soft-blue);
-            color: var(--balayan-blue);
-            font-weight: 600;
-            padding: 0.3rem 1rem;
-            border-radius: 30px;
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
-            border-left: 4px solid var(--balayan-red);
-        }
-
-        .hero-content h2 {
-            font-size: 3.2rem;
-            font-weight: 700;
-            line-height: 1.2;
-            color: #0b1c2f;
-        }
-
-        .hero-content .blue-highlight {
-            color: var(--balayan-blue);
-            border-bottom: 3px solid var(--balayan-red);
-            display: inline-block;
-            padding-bottom: 2px;
-        }
-
-        .hero-description {
-            font-size: 1.2rem;
-            color: #33455a;
-            margin: 1.8rem 0 2rem 0;
-            max-width: 550px;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .btn-primary {
-            background: var(--balayan-blue);
-            color: white;
-            padding: 0.8rem 2.2rem;
-            border-radius: 40px;
-            font-weight: 600;
-            border: none;
-            font-size: 1.1rem;
-            cursor: pointer;
-            box-shadow: 0 4px 8px rgba(30, 75, 140, 0.3);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            transition: 0.2s;
-        }
-
-        .btn-primary:hover {
-            background: #154078;
-            transform: translateY(-2px);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--balayan-blue);
-            color: var(--balayan-blue);
-            padding: 0.8rem 2rem;
-            border-radius: 40px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: 0.2s;
-        }
-
-        .btn-outline:hover {
-            background: var(--soft-blue);
-            transform: translateY(-2px);
-        }
-
-        .btn-outline i {
-            color: var(--balayan-red);
-        }
-
-        .hero-image {
-            flex: 1 1 350px;
-            background: #f8fafc;
-            border-radius: 32px;
-            padding: 1.2rem;
-            box-shadow: 0 20px 30px -10px rgba(0, 20, 30, 0.08);
-            border: 1px solid rgba(30, 75, 140, 0.15);
-            text-align: center;
-        }
-
-        .img-placeholder {
-            background: linear-gradient(145deg, #ffffff, #f0f6ff);
-            border-radius: 24px;
-            padding: 3rem 1.5rem;
-            border: 2px dashed var(--balayan-blue);
-            color: var(--balayan-blue);
-        }
-
-        .img-placeholder i {
-            font-size: 4rem;
-            color: var(--balayan-red);
-            opacity: 0.8;
-            margin-bottom: 1rem;
-        }
-
-        .content-section {
-            padding: 4rem 0;
-            border-bottom: 1px solid rgba(30, 75, 140, 0.1);
-            scroll-margin-top: 80px;
-        }
-
-        .content-section:last-child {
-            border-bottom: none;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-header h3 {
-            font-size: 2.5rem;
-            color: #0f263b;
-            font-weight: 600;
-        }
-
-        .section-header .title-underline {
-            width: 90px;
-            height: 4px;
-            background: var(--balayan-red);
-            margin: 0.8rem auto 1rem;
-        }
-
-        .section-header p {
-            color: #2f4055;
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .grid-2col,
-        .grid-3col {
-            display: grid;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .grid-2col {
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        }
-
-        .grid-3col {
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        }
-
-        .info-card {
-            background: #ffffff;
-            border-radius: 24px;
-            padding: 2rem;
-            box-shadow: 0 10px 25px -8px rgba(0, 30, 60, 0.08);
-            border: 1px solid rgba(30, 75, 140, 0.15);
-            transition: 0.3s;
-        }
-
-        .info-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--balayan-red);
-            box-shadow: 0 20px 30px -8px rgba(194, 45, 62, 0.15);
-        }
-
-        .info-card i {
-            font-size: 2.5rem;
-            color: var(--balayan-red);
-            margin-bottom: 1rem;
-        }
-
-        .info-card h4 {
-            font-size: 1.5rem;
-            color: var(--balayan-blue);
-            margin-bottom: 1rem;
-        }
-
-        .info-card ul {
-            list-style: none;
-        }
-
-        .info-card li {
-            margin-bottom: 0.8rem;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        .info-card li:before {
-            content: "•";
-            color: var(--balayan-red);
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-        }
-
-        .badge {
-            display: inline-block;
-            background: var(--balayan-red);
-            color: white;
-            padding: 0.2rem 1rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-top: 0.5rem;
-        }
-
-        .heritage-highlight {
-            background: linear-gradient(135deg, var(--soft-blue) 0%, #ffffff 100%);
-            padding: 2rem;
-            border-radius: 24px;
-            margin: 2rem 0;
-            border-left: 6px solid var(--balayan-red);
-        }
-
-        .price-tag {
-            color: var(--balayan-blue);
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-
-        .festival-note {
-            background: var(--balayan-red);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            display: inline-block;
-            font-size: 0.9rem;
-            margin-top: 1rem;
-        }
-
-        .map-container {
-            background: var(--soft-blue);
-            border-radius: 24px;
-            padding: 1.5rem;
-            margin: 2rem 0;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-        }
-
-        .map-container iframe {
-            width: 100%;
-            height: 400px;
-            border: 0;
-            border-radius: 16px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .rating {
-            color: #ffb400;
-            margin: 0.5rem 0;
-        }
-
-        .contact-info {
-            background: var(--soft-blue);
-            padding: 1rem;
-            border-radius: 12px;
-            margin: 1rem 0;
-        }
-
-        .main-footer {
-            background: #ffffff;
-            padding: 2.5rem 0 2rem;
-            border-top: 6px solid var(--balayan-blue);
-        }
-
-        .footer-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 2rem;
-        }
-
-        .footer-about {
-            max-width: 300px;
-        }
-
-        .footer-about h5 {
-            color: var(--balayan-red);
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .footer-about p {
-            color: #2f4055;
-        }
-
-        .footer-links h6,
-        .footer-social h6 {
-            color: var(--balayan-blue);
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            border-left: 4px solid var(--balayan-red);
-            padding-left: 0.8rem;
-        }
-
-        .footer-links ul {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-links a {
-            text-decoration: none;
-            color: #1e293b;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            transition: 0.2s;
-            cursor: pointer;
-        }
-
-        .footer-links a:hover {
-            color: var(--balayan-red);
-            transform: translateX(3px);
-        }
-
-        .footer-links a i {
-            color: var(--balayan-red);
-            font-size: 0.8rem;
-        }
-
-        .social-icons {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .social-icons a {
-            background: var(--soft-blue);
-            color: var(--balayan-blue);
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4rem;
-            transition: 0.2s;
-            border: 1px solid rgba(194, 45, 62, 0.2);
-            text-decoration: none;
-        }
-
-        .social-icons a:hover {
-            background: var(--balayan-red);
-            color: white;
-            transform: translateY(-3px);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            margin-top: 3rem;
-            color: #6b7c93;
-            border-top: 1px solid rgba(30, 75, 140, 0.2);
-            padding-top: 1.8rem;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        @media (max-width: 700px) {
-            .hero-content h2 {
-                font-size: 2.5rem;
-            }
-
-            .map-container iframe {
-                height: 300px;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-                text-align: center;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Balayan, Batangas · Heritage Capital by the Bay</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- AOS Library for smooth animations -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    /* RESET & BASE FIXES */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+      max-width: 100%; /* prevent any element from exceeding parent width */
+    }
+
+    html, body {
+      overflow-x: hidden;
+      width: 100%;
+      position: relative;
+    }
+
+    body {
+      background-color: #ffffff;
+      color: #1e2b3c;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      width: 100%;
+    }
+
+    :root {
+      --balayan-white: #ffffff;
+      --balayan-blue:  #1e4b8c;
+      --balayan-red:   #c22d3e;
+      --soft-blue:     #e6f0ff;
+      --soft-red:      #fff1f0;
+      --header-height: 70px;
+    }
+
+    .main-header {
+      background: var(--balayan-white);
+      padding: 0.8rem 0;
+      border-bottom: 4px solid var(--balayan-blue);
+      box-shadow: 0 2px 10px rgba(0, 20, 40, 0.02);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: auto;
+      min-height: var(--header-height);
+    }
+
+    .header-flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+    }
+
+    .logo-icon {
+      width: 48px;
+      height: 48px;
+      min-width: 48px;
+      min-height: 48px;
+      border-radius: 50%;
+      background: var(--balayan-red); /* fallback */
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 8px rgba(194, 45, 62, 0.2);
+    }
+
+    .logo-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .logo-text h1 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+      color: #0f172a;
+      line-height: 1.2;
+    }
+
+    .logo-text .subhead {
+      color: var(--balayan-blue);
+      font-weight: 500;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+    }
+
+    .logo-text .subhead i {
+      color: var(--balayan-red);
+      margin-right: 4px;
+    }
+
+    /* Mobile menu toggle button */
+    .mobile-menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      color: var(--balayan-blue);
+      cursor: pointer;
+      padding: 0.5rem;
+      transition: transform 0.2s;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      color: #1e293b;
+      font-size: 1.1rem;
+      padding: 0.5rem 0;
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .nav-links a i {
+      font-size: 0.8rem;
+      color: var(--balayan-blue);
+    }
+
+    .nav-links a:hover {
+      color: var(--balayan-blue);
+    }
+
+    .dropdown-content {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: white;
+      min-width: 260px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      border: 1px solid rgba(30,75,140,0.15);
+      padding: 0.8rem 0;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: all 0.2s;
+      z-index: 1000;
+    }
+
+    .nav-item:hover .dropdown-content {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 0.6rem 1.5rem;
+      font-size: 0.95rem;
+      color: #1e293b;
+      border-left: 3px solid transparent;
+    }
+
+    .dropdown-content a:hover {
+      background: var(--soft-blue);
+      border-left-color: var(--balayan-red);
+      color: var(--balayan-blue);
+    }
+
+    .header-cta {
+      background: var(--balayan-blue);
+      color: white;
+      border: none;
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(30, 75, 140, 0.2);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      letter-spacing: 0.3px;
+      transition: 0.2s;
+      white-space: nowrap;
+    }
+
+    .header-cta:hover {
+      background: #154078;
+      transform: translateY(-2px);
+    }
+
+    /* Mobile styles */
+    @media (max-width: 768px) {
+      .main-header {
+        padding: 0.5rem 0;
+        min-height: 60px;
+      }
+
+      .logo-icon {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        min-height: 40px;
+      }
+
+      .logo-text h1 {
+        font-size: 1.4rem;
+      }
+
+      .logo-text .subhead {
+        font-size: 0.7rem;
+      }
+
+      .mobile-menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        gap: 0;
+        background: white;
+        padding: 0;
+        border-top: 1px solid var(--soft-blue);
+        margin-top: 0.5rem;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-in-out, padding 0.3s ease;
+      }
+
+      .nav-links.show {
+        display: flex;
+        max-height: 80vh; /* large enough for all items */
+        padding: 1rem 0;
+        overflow-y: auto;
+      }
+
+      .nav-item {
+        width: 100%;
+      }
+
+      .nav-links a {
+        padding: 0.8rem 1.5rem;
+        width: 100%;
+        justify-content: space-between;
+        font-size: 1rem;
+      }
+
+      .dropdown-content {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        border: none;
+        background: var(--soft-blue);
+        margin: 0;
+        padding: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+        border-radius: 0;
+        width: 100%;
+      }
+
+      .dropdown-content.show {
+        max-height: 500px; /* large enough to show all items */
+        padding: 0.5rem 0;
+      }
+
+      .dropdown-content a {
+        padding: 0.8rem 2rem;
+        font-size: 0.9rem;
+      }
+
+      .nav-item:hover .dropdown-content {
+        /* Disable hover on mobile */
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+      }
+
+      .header-cta {
+        display: none; /* hide on mobile - can be moved into menu if desired */
+      }
+    }
+
+    /* Extra small devices - tighten padding */
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 1rem;
+      }
+
+      .hero-content h2 {
+        font-size: 2rem;
+      }
+
+      .btn-primary, .btn-outline {
+        padding: 0.6rem 1.5rem;
+        font-size: 1rem;
+      }
+    }
+
+    .hero {
+      background: var(--balayan-white);
+      padding: 3rem 0 4rem 0;
+    }
+
+    .hero-grid {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-content {
+      flex: 1 1 350px;
+    }
+
+    .hero-content .tag {
+      display: inline-block;
+      background: var(--soft-blue);
+      color: var(--balayan-blue);
+      font-weight: 600;
+      padding: 0.3rem 1rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+      border-left: 4px solid var(--balayan-red);
+    }
+
+    .hero-content h2 {
+      font-size: 3.2rem;
+      font-weight: 700;
+      line-height: 1.2;
+      color: #0b1c2f;
+    }
+
+    .hero-content .blue-highlight {
+      color: var(--balayan-blue);
+      border-bottom: 3px solid var(--balayan-red);
+      display: inline-block;
+      padding-bottom: 2px;
+    }
+
+    .hero-description {
+      font-size: 1.2rem;
+      color: #33455a;
+      margin: 1.8rem 0 2rem 0;
+      max-width: 550px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--balayan-blue);
+      color: white;
+      padding: 0.8rem 2.2rem;
+      border-radius: 40px;
+      font-weight: 600;
+      border: none;
+      font-size: 1.1rem;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(30, 75, 140, 0.3);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: 0.2s;
+    }
+
+    .btn-primary:hover {
+      background: #154078;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--balayan-blue);
+      color: var(--balayan-blue);
+      padding: 0.8rem 2rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: 0.2s;
+    }
+
+    .btn-outline:hover {
+      background: var(--soft-blue);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline i {
+      color: var(--balayan-red);
+    }
+
+    .hero-image {
+      flex: 1 1 350px;
+      background: #f8fafc;
+      border-radius: 32px;
+      padding: 1.2rem;
+      box-shadow: 0 20px 30px -10px rgba(0, 20, 30, 0.08);
+      border: 1px solid rgba(30, 75, 140, 0.15);
+      text-align: center;
+    }
+
+    .img-placeholder {
+      background: linear-gradient(145deg, #ffffff, #f0f6ff);
+      border-radius: 24px;
+      padding: 3rem 1.5rem;
+      border: 2px dashed var(--balayan-blue);
+      color: var(--balayan-blue);
+    }
+
+    .img-placeholder i {
+      font-size: 4rem;
+      color: var(--balayan-red);
+      opacity: 0.8;
+      margin-bottom: 1rem;
+    }
+
+    .content-section {
+      padding: 4rem 0;
+      border-bottom: 1px solid rgba(30,75,140,0.1);
+      scroll-margin-top: 80px;
+    }
+
+    .content-section:last-child {
+      border-bottom: none;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-header h3 {
+      font-size: 2.5rem;
+      color: #0f263b;
+      font-weight: 600;
+    }
+
+    .section-header .title-underline {
+      width: 90px;
+      height: 4px;
+      background: var(--balayan-red);
+      margin: 0.8rem auto 1rem;
+    }
+
+    .section-header p {
+      color: #2f4055;
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .grid-2col, .grid-3col {
+      display: grid;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .grid-2col {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    .grid-3col {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .info-card {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 2rem;
+      box-shadow: 0 10px 25px -8px rgba(0, 30, 60, 0.08);
+      border: 1px solid rgba(30, 75, 140, 0.15);
+      transition: 0.3s;
+    }
+
+    .info-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--balayan-red);
+      box-shadow: 0 20px 30px -8px rgba(194, 45, 62, 0.15);
+    }
+
+    .info-card i {
+      font-size: 2.5rem;
+      color: var(--balayan-red);
+      margin-bottom: 1rem;
+    }
+
+    .info-card h4 {
+      font-size: 1.5rem;
+      color: var(--balayan-blue);
+      margin-bottom: 1rem;
+    }
+
+    .info-card ul {
+      list-style: none;
+    }
+
+    .info-card li {
+      margin-bottom: 0.8rem;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .info-card li:before {
+      content: "•";
+      color: var(--balayan-red);
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--balayan-red);
+      color: white;
+      padding: 0.2rem 1rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+    }
+
+    .heritage-highlight {
+      background: linear-gradient(135deg, var(--soft-blue) 0%, #ffffff 100%);
+      padding: 2rem;
+      border-radius: 24px;
+      margin: 2rem 0;
+      border-left: 6px solid var(--balayan-red);
+    }
+
+    .price-tag {
+      color: var(--balayan-blue);
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .festival-note {
+      background: var(--balayan-red);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      display: inline-block;
+      font-size: 0.9rem;
+      margin-top: 1rem;
+    }
+
+    .map-container {
+      background: var(--soft-blue);
+      border-radius: 24px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 400px;
+      border: 0;
+      border-radius: 16px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .rating {
+      color: #ffb400;
+      margin: 0.5rem 0;
+    }
+
+    .contact-info {
+      background: var(--soft-blue);
+      padding: 1rem;
+      border-radius: 12px;
+      margin: 1rem 0;
+    }
+
+    .main-footer {
+      background: #ffffff;
+      padding: 2.5rem 0 2rem;
+      border-top: 6px solid var(--balayan-blue);
+    }
+
+    .footer-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .footer-about {
+      max-width: 300px;
+    }
+
+    .footer-about h5 {
+      color: var(--balayan-red);
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .footer-about p {
+      color: #2f4055;
+    }
+
+    .footer-links h6, .footer-social h6 {
+      color: var(--balayan-blue);
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      border-left: 4px solid var(--balayan-red);
+      padding-left: 0.8rem;
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      color: #1e293b;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: 0.2s;
+      cursor: pointer;
+    }
+
+    .footer-links a:hover {
+      color: var(--balayan-red);
+      transform: translateX(3px);
+    }
+
+    .footer-links a i {
+      color: var(--balayan-red);
+      font-size: 0.8rem;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .social-icons a {
+      background: var(--soft-blue);
+      color: var(--balayan-blue);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      transition: 0.2s;
+      border: 1px solid rgba(194,45,62,0.2);
+      text-decoration: none;
+    }
+
+    .social-icons a:hover {
+      background: var(--balayan-red);
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 3rem;
+      color: #6b7c93;
+      border-top: 1px solid rgba(30,75,140,0.2);
+      padding-top: 1.8rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    @media (max-width: 700px) {
+      .hero-content h2 {
+        font-size: 2.5rem;
+      }
+      .map-container iframe {
+        height: 300px;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
 </head>
-
 <body>
-    <header class="main-header">
-        <div class="container header-flex">
-            <div class="logo-area" onclick="smoothScrollTo('home')">
-                <div class="logo-icon">
-                    <img src="https://raw.githubusercontent.com/FireFlyDeveloper/Balayan-Tourism/refs/heads/main/public/logo.jpg"
-                        alt="Balayan Logo">
-                </div>
-                <div class="logo-text">
-                    <h1>Balayan · Batangas</h1>
-                    <div class="subhead"><i class="fas fa-location-dot"></i> first capital of Batangas (1697–1732)</div>
-                </div>
-            </div>
-
-            <!-- Mobile menu toggle button -->
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
-                <i class="fas fa-bars"></i>
-            </button>
-
-            <nav class="nav-links" id="navLinks">
-                <div class="nav-item">
-                    <a href="#" class="main-nav-link" data-target="home"><i class="fas fa-home"></i> Home <i
-                            class="fas fa-chevron-down dropdown-icon"></i></a>
-                    <div class="dropdown-content" id="dropdown-home">
-                        <a href="#" onclick="smoothScrollTo('overview'); return false;" class="nav-link">Overview &
-                            History</a>
-                        <a href="#" onclick="smoothScrollTo('location'); return false;" class="nav-link">How to Get
-                            Here</a>
-                        <a href="#" onclick="smoothScrollTo('economy'); return false;" class="nav-link">Economy &
-                            Growth</a>
-                    </div>
-                </div>
-                <div class="nav-item">
-                    <a href="#" class="main-nav-link" data-target="heritage"><i class="fas fa-church"></i> Heritage <i
-                            class="fas fa-chevron-down dropdown-icon"></i></a>
-                    <div class="dropdown-content" id="dropdown-heritage">
-                        <a href="#" onclick="smoothScrollTo('church'); return false;" class="nav-link">Immaculate
-                            Conception Church</a>
-                        <a href="#" onclick="smoothScrollTo('ancestral'); return false;" class="nav-link">Ancestral
-                            Houses</a>
-                        <a href="#" onclick="smoothScrollTo('cemetery'); return false;" class="nav-link">Spanish
-                            Cemetery</a>
-                        <a href="#" onclick="smoothScrollTo('senor-nazareno'); return false;" class="nav-link">Señor
-                            Nazareno Chapel</a>
-                        <a href="#" onclick="smoothScrollTo('schools'); return false;" class="nav-link">Heritage School
-                            Buildings</a>
-                    </div>
-                </div>
-                <div class="nav-item">
-                    <a href="#" class="main-nav-link" data-target="festivals"><i class="fas fa-drumstick-bite"></i>
-                        Festivals <i class="fas fa-chevron-down dropdown-icon"></i></a>
-                    <div class="dropdown-content" id="dropdown-festivals">
-                        <a href="#" onclick="smoothScrollTo('lechon'); return false;" class="nav-link">Parada ng
-                            Lechon</a>
-                        <a href="#" onclick="smoothScrollTo('holyweek'); return false;" class="nav-link">Holy Week
-                            Traditions</a>
-                        <a href="#" onclick="smoothScrollTo('fridays'); return false;" class="nav-link">Friday Devotion
-                            (Señor Nazareno)</a>
-                    </div>
-                </div>
-                <div class="nav-item">
-                    <a href="#" class="main-nav-link" data-target="food"><i class="fas fa-utensils"></i> Food <i
-                            class="fas fa-chevron-down dropdown-icon"></i></a>
-                    <div class="dropdown-content" id="dropdown-food">
-                        <a href="#" onclick="smoothScrollTo('bagoong'); return false;" class="nav-link">Bagoong
-                            Balayan</a>
-                        <a href="#" onclick="smoothScrollTo('delicacies'); return false;" class="nav-link">Local
-                            Delicacies</a>
-                    </div>
-                </div>
-                <div class="nav-item">
-                    <a href="#" class="main-nav-link" data-target="stay"><i class="fas fa-bed"></i> Stay <i
-                            class="fas fa-chevron-down dropdown-icon"></i></a>
-                    <div class="dropdown-content" id="dropdown-stay">
-                        <a href="#" onclick="smoothScrollTo('espinelis'); return false;" class="nav-link">Espineli's
-                            Hotel</a>
-                        <a href="#" onclick="smoothScrollTo('casa-ilustre'); return false;" class="nav-link">Hotel Casa
-                            Ilustre</a>
-                        <a href="#" onclick="smoothScrollTo('my-place'); return false;" class="nav-link">My Place Resort
-                            & Pavilion</a>
-                        <a href="#" onclick="smoothScrollTo('kalika'); return false;" class="nav-link">Kalika
-                            Balayan</a>
-                    </div>
-                </div>
-            </nav>
-            <button class="header-cta" onclick="smoothScrollTo('plan')">
-                <i class="fas fa-flag"></i> Plan Your Visit
-            </button>
+  <header class="main-header">
+    <div class="container header-flex">
+      <div class="logo-area" onclick="smoothScrollTo('home')">
+        <div class="logo-icon">
+          <img src="https://raw.githubusercontent.com/FireFlyDeveloper/Balayan-Tourism/refs/heads/main/public/logo.jpg" alt="Balayan Logo">
         </div>
-    </header>
-
-    <section id="home" class="hero">
-        <div class="container hero-grid">
-            <div class="hero-content" data-aos="fade-right" data-aos-duration="1000">
-                <span class="tag"><i class="fas fa-sun" style="color:var(--balayan-red);"></i> where history meets the
-                    sea</span>
-                <h2>
-                    Balayan: <span class="blue-highlight">Batangas' First Capital</span><br>
-                    & <i style="color:var(--balayan-red);">Heritage Treasure</i>
-                </h2>
-                <p class="hero-description">
-                    <strong>Founded in 1578</strong>, Balayan is one of the oldest towns in the Philippines. The name
-                    traces its roots to the Sri-Visayan word <strong>balai</strong> meaning house, reflecting its
-                    origins as a community of homes built on stilts along Balayan Bay. Once believed to be the center of
-                    the ancient Ma-i kingdom, Balayan has evolved into a thriving agri-industrial hub.
-                </p>
-                <div class="hero-buttons">
-                    <button class="btn-primary" onclick="smoothScrollTo('plan')"><i class="fas fa-compass"></i> heritage
-                        walk</button>
-                    <button class="btn-outline" onclick="smoothScrollTo('lechon')"><i class="fas fa-play-circle"></i>
-                        festivals</button>
-                </div>
-            </div>
-            <div class="hero-image" data-aos="fade-left" data-aos-duration="1000">
-                <div class="img-placeholder">
-                    <i class="fas fa-church"></i>
-                    <p><span style="color:var(--balayan-blue);font-weight:600;">IMMACULATE CONCEPTION</span></p>
-                    <p style="font-size:1rem;">Built 1749–1795 · coral stone · National Cultural Treasure</p>
-                    <p style="font-size:0.9rem; margin-top:1rem; color:#334e6e;">⚓ watchtower built after 1754 pirate
-                        raid</p>
-                </div>
-            </div>
+        <div class="logo-text">
+          <h1>Balayan · Batangas</h1>
+          <div class="subhead"><i class="fas fa-location-dot"></i> first capital of Batangas (1697–1732)</div>
         </div>
-    </section>
+      </div>
 
-    <section id="overview" class="content-section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h3>Welcome to Balayan</h3>
-                <div class="title-underline"></div>
-                <p>Where tradition lives in every corner</p>
-            </div>
-            <div class="grid-2col">
-                <div class="info-card" data-aos="flip-left" data-aos-delay="100">
-                    <i class="fas fa-ship"></i>
-                    <h4>A Trading Port for Centuries</h4>
-                    <p>Balayan served as a trading center for centuries, from the pre-colonial era as the center of a
-                        Muslim kingdom. It was the first capital of Batangas province from 1697 to 1732, and remains the
-                        traditional commercial center of western Batangas.</p>
-                    <p class="badge">First Capital 1697-1732</p>
-                </div>
-                <div class="info-card" data-aos="flip-left" data-aos-delay="200">
-                    <i class="fas fa-users"></i>
-                    <h4>Local Life</h4>
-                    <p>Balayan can be the most conservative area in Batangas, and life here is quite relaxed. Locals
-                        learn English at school, but will use Tagalog in everyday conversation; some elderly can still
-                        speak and understand Spanish.</p>
-                </div>
-            </div>
+      <!-- Mobile menu toggle button -->
+      <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <nav class="nav-links" id="navLinks">
+        <div class="nav-item">
+          <a href="#" class="main-nav-link" data-target="home"><i class="fas fa-home"></i> Home <i class="fas fa-chevron-down dropdown-icon"></i></a>
+          <div class="dropdown-content" id="dropdown-home">
+            <a href="#" onclick="smoothScrollTo('overview'); return false;" class="nav-link">Overview & History</a>
+            <a href="#" onclick="smoothScrollTo('location'); return false;" class="nav-link">How to Get Here</a>
+            <a href="#" onclick="smoothScrollTo('economy'); return false;" class="nav-link">Economy & Growth</a>
+          </div>
         </div>
-    </section>
-
-    <section id="economy" class="content-section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h3>Economic Progress</h3>
-                <div class="title-underline"></div>
-                <p>From 3rd class to 1st class municipality</p>
-            </div>
-            <div class="info-card" data-aos="zoom-in" data-aos-duration="800">
-                <i class="fas fa-chart-line"></i>
-                <h4>Rapid Rise</h4>
-                <p>Balayan rapidly rose from a third-class municipality in 1992 to first-class status by 1996,
-                    highlighting its steady economic progress anchored by a sugar central and supported by agriculture,
-                    fisheries, and cottage industries.</p>
-            </div>
+        <div class="nav-item">
+          <a href="#" class="main-nav-link" data-target="heritage"><i class="fas fa-church"></i> Heritage <i class="fas fa-chevron-down dropdown-icon"></i></a>
+          <div class="dropdown-content" id="dropdown-heritage">
+            <a href="#" onclick="smoothScrollTo('church'); return false;" class="nav-link">Immaculate Conception Church</a>
+            <a href="#" onclick="smoothScrollTo('ancestral'); return false;" class="nav-link">Ancestral Houses</a>
+            <a href="#" onclick="smoothScrollTo('cemetery'); return false;" class="nav-link">Spanish Cemetery</a>
+            <a href="#" onclick="smoothScrollTo('senor-nazareno'); return false;" class="nav-link">Señor Nazareno Chapel</a>
+            <a href="#" onclick="smoothScrollTo('schools'); return false;" class="nav-link">Heritage School Buildings</a>
+          </div>
         </div>
-    </section>
-
-    <section id="location" class="content-section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h3>How to Get Here</h3>
-                <div class="title-underline"></div>
-                <p>Your journey to heritage begins</p>
-            </div>
-            <div class="grid-2col">
-                <div class="info-card" data-aos="fade-right">
-                    <i class="fas fa-bus"></i>
-                    <h4>By Bus</h4>
-                    <ul>
-                        <li><strong>San Agustin</strong> and <strong>Erjohn & Almark</strong> operate buses from
-                            Parañaque via Tagaytay</li>
-                        <li><strong>Batman Starexpress (BSC)</strong> has hourly buses between Batangas City and Nasugbu
-                        </li>
-                    </ul>
-                    <p class="badge">From Manila: approx. 2-3 hours</p>
-                </div>
-                <div class="info-card" data-aos="fade-left">
-                    <i class="fas fa-car"></i>
-                    <h4>By Car</h4>
-                    <p>Balayan is at the junction of two highways, joining at a roundabout north of downtown: </p>
-                    <ul>
-                        <li><strong>Palico-Balayan-Batangas Road (N436)</strong> – Connects with Nasugbu, Lemery, Taal,
-                            and Batangas City</li>
-                        <li><strong>Balibago-Balayan Road (N409)</strong> – Connects Balayan with Calatagan</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Interactive Map Section -->
-            <div class="map-container" data-aos="fade-up" data-aos-duration="1200">
-                <h4 style="color: var(--balayan-blue); margin-bottom: 1rem; text-align: center;">
-                    <i class="fas fa-map-marked-alt" style="color: var(--balayan-red);"></i> Explore Balayan
-                </h4>
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30991.47685368015!2d120.712478!3d13.941783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd47b42d3d4b8d%3A0x4c8f5e6f8a2b5c0!2sBalayan%2C%20Batangas!5e0!3m2!1sen!2sph!4v1647854123456!5m2!1sen!2sph"
-                    allowfullscreen="" loading="lazy" title="Google Map of Balayan, Batangas">
-                </iframe>
-                <p style="text-align: center; margin-top: 1rem; color: var(--balayan-blue);">
-                    <i class="fas fa-map-pin" style="color: var(--balayan-red);"></i> Balayan Poblacion · Immaculate
-                    Conception Church · Ancestral Houses
-                </p>
-            </div>
+        <div class="nav-item">
+          <a href="#" class="main-nav-link" data-target="festivals"><i class="fas fa-drumstick-bite"></i> Festivals <i class="fas fa-chevron-down dropdown-icon"></i></a>
+          <div class="dropdown-content" id="dropdown-festivals">
+            <a href="#" onclick="smoothScrollTo('lechon'); return false;" class="nav-link">Parada ng Lechon</a>
+            <a href="#" onclick="smoothScrollTo('holyweek'); return false;" class="nav-link">Holy Week Traditions</a>
+            <a href="#" onclick="smoothScrollTo('fridays'); return false;" class="nav-link">Friday Devotion (Señor Nazareno)</a>
+          </div>
         </div>
-    </section>
-
-    <section id="heritage" class="content-section" style="scroll-margin-top: 80px;">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h3>Balayan's Heritage Gems</h3>
-                <div class="title-underline"></div>
-                <p>Explore centuries of history</p>
-            </div>
+        <div class="nav-item">
+          <a href="#" class="main-nav-link" data-target="food"><i class="fas fa-utensils"></i> Food <i class="fas fa-chevron-down dropdown-icon"></i></a>
+          <div class="dropdown-content" id="dropdown-food">
+            <a href="#" onclick="smoothScrollTo('bagoong'); return false;" class="nav-link">Bagoong Balayan</a>
+            <a href="#" onclick="smoothScrollTo('delicacies'); return false;" class="nav-link">Local Delicacies</a>
+          </div>
         </div>
-    </section>
-
-    <section id="church" class="content-section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h3>Immaculate Conception Church</h3>
-                <div class="title-underline"></div>
-                <p>National Cultural Treasure (declared 2001)</p>
-            </div>
-            <div class="grid-2col">
-                <div class="info-card" data-aos="fade-right">
-                    <i class="fas fa-church"></i>
-                    <h4>History</h4>
-                    <p>Built from 1749 to 1795 by the secular clergy, this fortress-church was constructed with coral
-                        stones. The church and its convent were fortified with walls after the pirate raid of 1754,
-                        including a watchtower on a hill. The fortification was demolished sometime in the 1840s, the
-                        remnants of which are now a low perimeter wall.</p>
-                    <p>The secular clergy administered Balayan from 1753 to 1876, followed by the Augustinian Recollects
-                        from around 1896 to 1901.</p>
-                </div>
-                <div class="info-card" data-aos="fade-left">
-                    <i class="fas fa-paint-brush"></i>
-                    <h4>Architecture</h4>
-                    <p>Inside the church are the old retablo, pulpit, and flooring made of colorful and black and white
-                        tiles. The third and fourth levels of the belfry were repaired using bricks after earthquake
-                        damage in the 19th century. In 1892, the levels were repaired with bricks but the fourth level
-                        was damaged; it was restored after 2003.</p>
-                    <p>The church was marked by the National Historical Institute in 1986 and declared a National
-                        Cultural Treasure by the National Museum in 2001.</p>
-                </div>
-            </div>
+        <div class="nav-item">
+          <a href="#" class="main-nav-link" data-target="stay"><i class="fas fa-bed"></i> Stay <i class="fas fa-chevron-down dropdown-icon"></i></a>
+          <div class="dropdown-content" id="dropdown-stay">
+            <a href="#" onclick="smoothScrollTo('espinelis'); return false;" class="nav-link">Espineli's Hotel</a>
+            <a href="#" onclick="smoothScrollTo('casa-ilustre'); return false;" class="nav-link">Hotel Casa Ilustre</a>
+            <a href="#" onclick="smoothScrollTo('my-place'); return false;" class="nav-link">My Place Resort & Pavilion</a>
+            <a href="#" onclick="smoothScrollTo('kalika'); return false;" class="nav-link">Kalika Balayan</a>
+          </div>
         </div>
-    </section>
+      </nav>
+      <button class="header-cta" onclick="smoothScrollTo('plan')">
+        <i class="fas fa-flag"></i> Plan Your Visit
+      </button>
+    </div>
+  </header>
 
-    <section id="ancestral" class="content-section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h3>Ancestral Houses</h3>
-                <div class="title-underline"></div>
-                <p>Bahay na Bato heritage along Fraternidad, Fe, Antorcha, Paz & Union streets</p>
-            </div>
-            <div class="grid-3col">
-                <div class="info-card" data-aos="zoom-in" data-aos-delay="100">
-                    <i class="fas fa-home"></i>
-                    <h4>Casa Cacao Filipina</h4>
-                    <p>The Mariano Martinez House, called Casa Cacao Filipina because the family who owned it had a
-                        cacao business. Located across the municipal hall building.</p>
-                </div>
-                <div class="info-card" data-aos="zoom-in" data-aos-delay="150">
-                    <i class="fas fa-home"></i>
-                    <h4>Lopez House</h4>
-                    <p>At the corner of Antorcha and Don Sixto streets, this bahay na bato has two markers honoring
-                        siblings <strong>Sixto Lopez (1863-1947) and Clemencia Lopez (1872-1963)</strong> who were
-                        anti-US imperialists.</p>
-                </div>
-                <div class="info-card" data-aos="zoom-in" data-aos-delay="200">
-                    <i class="fas fa-home"></i>
-                    <h4>Pedro Martinez House</h4>
-                    <p>Characterized by <strong>Neo-Gothic doorways</strong> popular in the ancestral houses of Balayan,
-                        Taal, and Batangas City, with a Spanish-era gate and kinalabasa (squash-shaped) balusters.
-                        Located at Union and Paz streets.</p>
-                </div>
-                <div class="info-card" data-aos="zoom-in" data-aos-delay="250">
-                    <i class="fas fa-home"></i>
-                    <h4>Telesforo Chuidian House</h4>
-                    <p>At the corner of Putol and Paz streets, this house (now Apacible house) is notable for its wide
-                        capiz windows and walls with bamboo slat markings indicating how it was used to hold the
-                        palitada (plaster) during construction.</p>
-                </div>
-                <div class="info-card" data-aos="zoom-in" data-aos-delay="300">
-                    <i class="fas fa-home"></i>
-                    <h4>Ermita Family House</h4>
-                    <p>Framing the corner of Union and Paz streets, an impressive bahay na bato with its zaguan (lower
-                        level).</p>
-                </div>
-                <div class="info-card" data-aos="zoom-in" data-aos-delay="350">
-                    <i class="fas fa-home"></i>
-                    <h4>Vivencio Ramos House</h4>
-                    <p>On Antorcha Street, this quaint house has undergone changes but retains much of its character.
-                        Also on Antorcha are Martinez family houses and two with Art Deco elements.</p>
-                </div>
-            </div>
+  <section id="home" class="hero">
+    <div class="container hero-grid">
+      <div class="hero-content" data-aos="fade-right" data-aos-duration="1000">
+        <span class="tag"><i class="fas fa-sun" style="color:var(--balayan-red);"></i> where history meets the sea</span>
+        <h2>
+          Balayan: <span class="blue-highlight">Batangas' First Capital</span><br>
+          & <i style="color:var(--balayan-red);">Heritage Treasure</i>
+        </h2>
+        <p class="hero-description">
+          <strong>Founded in 1578</strong>, Balayan is one of the oldest towns in the Philippines. The name traces its roots to the Sri-Visayan word <strong>balai</strong> meaning house, reflecting its origins as a community of homes built on stilts along Balayan Bay. Once believed to be the center of the ancient Ma-i kingdom, Balayan has evolved into a thriving agri-industrial hub.
+        </p>
+        <div class="hero-buttons">
+          <button class="btn-primary" onclick="smoothScrollTo('plan')"><i class="fas fa-compass"></i> heritage walk</button>
+          <button class="btn-outline" onclick="smoothScrollTo('lechon')"><i class="fas fa-play-circle"></i> festivals</button>
         </div>
-    </section>
-
-    <section id="cemetery" class="content-section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h3>Spanish-era Cemetery</h3>
-                <div class="title-underline"></div>
-                <p>The grandest in Batangas province</p>
-            </div>
-            <div class="info-card" data-aos="flip-up">
-                <i class="fas fa-tombstone"></i>
-                <h4>Built with Reclaimed Materials</h4>
-                <p>Located on an elevated ground on Paz Street, this cemetery is the grandest of many Spanish-era burial
-                    grounds in Batangas. The old convent was torn down in 1857 and replaced with a new one (now
-                    Immaculate Conception College). Materials from the old convent were reused in the construction of
-                    the cemetery, including the retaining walls, the grand staircase, and the mortuary chapel at its
-                    center.</p>
-            </div>
+      </div>
+      <div class="hero-image" data-aos="fade-left" data-aos-duration="1000">
+        <div class="img-placeholder">
+          <i class="fas fa-church"></i>
+          <p><span style="color:var(--balayan-blue);font-weight:600;">IMMACULATE CONCEPTION</span></p>
+          <p style="font-size:1rem;">Built 1749–1795 · coral stone · National Cultural Treasure</p>
+          <p style="font-size:0.9rem; margin-top:1rem; color:#334e6e;">⚓ watchtower built after 1754 pirate raid</p>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <section id="senor-nazareno" class="content-section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h3>Señor Nazareno Chapel</h3>
-                <div class="title-underline"></div>
-                <p>Open every Friday until 6pm</p>
-            </div>
-            <div class="grid-2col">
-                <div class="info-card" data-aos="fade-right">
-                    <i class="fas fa-place-of-worship"></i>
-                    <h4>Miraculous Image</h4>
-                    <p>Every Friday, devotees gather at this private chapel on Progreso Street to venerate the antique
-                        image of the dead Christ, said to be miraculous. It is past 6 p.m., but outside the chapel
-                        devotees are still standing outside the fence and closed gate. It is a normal sight every
-                        Friday, the only day the private chapel is open to the public (until 6 p.m.). Visitors come not
-                        only from the town or province but from other parts of the country as well.</p>
-                </div>
-                <div class="info-card" data-aos="fade-left">
-                    <i class="fas fa-recycle"></i>
-                    <h4>Heritage Structure</h4>
-                    <p>The chapel itself is a heritage structure built using elements from an old house that used to
-                        stand in its place. These include the doors, sala dividers, balusters, capiz windows reused as
-                        ceiling accents, newels as rail posts, corbels as altar accents, and coral stone blocks as wall
-                        cladding.</p>
-                </div>
-            </div>
+  <section id="overview" class="content-section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h3>Welcome to Balayan</h3>
+        <div class="title-underline"></div>
+        <p>Where tradition lives in every corner</p>
+      </div>
+      <div class="grid-2col">
+        <div class="info-card" data-aos="flip-left" data-aos-delay="100">
+          <i class="fas fa-ship"></i>
+          <h4>A Trading Port for Centuries</h4>
+          <p>Balayan served as a trading center for centuries, from the pre-colonial era as the center of a Muslim kingdom. It was the first capital of Batangas province from 1697 to 1732, and remains the traditional commercial center of western Batangas.</p>
+          <p class="badge">First Capital 1697-1732</p>
         </div>
-    </section>
-
-    <section id="schools" class="content-section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h3>Heritage School Buildings</h3>
-                <div class="title-underline"></div>
-            </div>
-            <div class="info-card" data-aos="zoom-in">
-                <i class="fas fa-school"></i>
-                <h4>Gabaldon-type Buildings</h4>
-                <p>Balayan has at least two heritage school buildings located inside the Balayan East and Balayan West
-                    central schools on Paz Street. Located across each other, the schools still have their original
-                    Gabaldon-type buildings which look nicely preserved and maintained.</p>
-            </div>
+        <div class="info-card" data-aos="flip-left" data-aos-delay="200">
+          <i class="fas fa-users"></i>
+          <h4>Local Life</h4>
+          <p>Balayan can be the most conservative area in Batangas, and life here is quite relaxed. Locals learn English at school, but will use Tagalog in everyday conversation; some elderly can still speak and understand Spanish.</p>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <section id="festivals" class="content-section" style="scroll-margin-top: 80px;">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h3>Festivals & Celebrations</h3>
-                <div class="title-underline"></div>
-                <p>Where faith and culture come alive</p>
-            </div>
+  <section id="economy" class="content-section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h3>Economic Progress</h3>
+        <div class="title-underline"></div>
+        <p>From 3rd class to 1st class municipality</p>
+      </div>
+      <div class="info-card" data-aos="zoom-in" data-aos-duration="800">
+        <i class="fas fa-chart-line"></i>
+        <h4>Rapid Rise</h4>
+        <p>Balayan rapidly rose from a third-class municipality in 1992 to first-class status by 1996, highlighting its steady economic progress anchored by a sugar central and supported by agriculture, fisheries, and cottage industries.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="location" class="content-section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h3>How to Get Here</h3>
+        <div class="title-underline"></div>
+        <p>Your journey to heritage begins</p>
+      </div>
+      <div class="grid-2col">
+        <div class="info-card" data-aos="fade-right">
+          <i class="fas fa-bus"></i>
+          <h4>By Bus</h4>
+          <ul>
+            <li><strong>San Agustin</strong> and <strong>Erjohn & Almark</strong> operate buses from Parañaque via Tagaytay</li>
+            <li><strong>Batman Starexpress (BSC)</strong> has hourly buses between Batangas City and Nasugbu</li>
+          </ul>
+          <p class="badge">From Manila: approx. 2-3 hours</p>
         </div>
-    </section>
-
-    <section id="lechon" class="content-section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h3>Parada ng Lechon</h3>
-                <div class="title-underline"></div>
-                <p>The Lechon Festival · June 24</p>
-            </div>
-            <div class="grid-2col">
-                <div class="info-card" data-aos="fade-right">
-                    <i class="fas fa-drumstick-bite"></i>
-                    <h4>About the Festival</h4>
-                    <p>Held annually on June 24, the Parada ng Lechon is a religious and cultural festival celebrated in
-                        honor of St. John the Baptist. It showcases decorated roasted pigs, lively street performances,
-                        and vibrant celebrations honoring the town's rich culinary heritage. Along with the parade is
-                        the practice of water dousing among community members and visitors.</p>
-                </div>
-                <div class="info-card" data-aos="fade-left">
-                    <i class="fas fa-water"></i>
-                    <h4>Water Battles</h4>
-                    <p>The day starts with water battles on the streets. In the morning, prepare to get wet with pails
-                        of water and water cannons from fire engines. After the water battles, lechon dressed in
-                        different ways are paraded through the streets. The festivities end with sumptuous feasts at
-                        every home.</p>
-                </div>
-            </div>
+        <div class="info-card" data-aos="fade-left">
+          <i class="fas fa-car"></i>
+          <h4>By Car</h4>
+          <p>Balayan is at the junction of two highways, joining at a roundabout north of downtown: </p>
+          <ul>
+            <li><strong>Palico-Balayan-Batangas Road (N436)</strong> – Connects with Nasugbu, Lemery, Taal, and Batangas City</li>
+            <li><strong>Balibago-Balayan Road (N409)</strong> – Connects Balayan with Calatagan</li>
+          </ul>
         </div>
-    </section>
+      </div>
+      
+      <!-- Interactive Map Section -->
+      <div class="map-container" data-aos="fade-up" data-aos-duration="1200">
+        <h4 style="color: var(--balayan-blue); margin-bottom: 1rem; text-align: center;">
+          <i class="fas fa-map-marked-alt" style="color: var(--balayan-red);"></i> Explore Balayan
+        </h4>
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30991.47685368015!2d120.712478!3d13.941783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd47b42d3d4b8d%3A0x4c8f5e6f8a2b5c0!2sBalayan%2C%20Batangas!5e0!3m2!1sen!2sph!4v1647854123456!5m2!1sen!2sph" 
+          allowfullscreen="" 
+          loading="lazy" 
+          title="Google Map of Balayan, Batangas">
+        </iframe>
+        <p style="text-align: center; margin-top: 1rem; color: var(--balayan-blue);">
+          <i class="fas fa-map-pin" style="color: var(--balayan-red);"></i> Balayan Poblacion · Immaculate Conception Church · Ancestral Houses
+        </p>
+      </div>
+    </div>
+  </section>
 
-    <section id="holyweek" class="content-section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h3>Holy Week Traditions</h3>
-                <div class="title-underline"></div>
-            </div>
-            <div class="info-card" data-aos="zoom-in">
-                <i class="fas fa-cross"></i>
-                <h4>Quintessential Processions</h4>
-                <p>Balayan is known for its solemn Holy Week processions, passing by its grand ancestral houses. These
-                    traditions are part of the intangible cultural heritage assets of this old town.</p>
-            </div>
+  <section id="heritage" class="content-section" style="scroll-margin-top: 80px;">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h3>Balayan's Heritage Gems</h3>
+        <div class="title-underline"></div>
+        <p>Explore centuries of history</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="church" class="content-section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h3>Immaculate Conception Church</h3>
+        <div class="title-underline"></div>
+        <p>National Cultural Treasure (declared 2001)</p>
+      </div>
+      <div class="grid-2col">
+        <div class="info-card" data-aos="fade-right">
+          <i class="fas fa-church"></i>
+          <h4>History</h4>
+          <p>Built from 1749 to 1795 by the secular clergy, this fortress-church was constructed with coral stones. The church and its convent were fortified with walls after the pirate raid of 1754, including a watchtower on a hill. The fortification was demolished sometime in the 1840s, the remnants of which are now a low perimeter wall.</p>
+          <p>The secular clergy administered Balayan from 1753 to 1876, followed by the Augustinian Recollects from around 1896 to 1901.</p>
         </div>
-    </section>
-
-    <section id="fridays" class="content-section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h3>Friday Devotion</h3>
-                <div class="title-underline"></div>
-            </div>
-            <div class="info-card" data-aos="flip-up">
-                <i class="fas fa-pray"></i>
-                <h4>Señor Nazareno Chapel</h4>
-                <p>Every Friday, the private chapel on Progreso Street opens until 6pm for veneration of the miraculous
-                    image of the dead Christ. Devotees gather even outside after closing time.</p>
-            </div>
+        <div class="info-card" data-aos="fade-left">
+          <i class="fas fa-paint-brush"></i>
+          <h4>Architecture</h4>
+          <p>Inside the church are the old retablo, pulpit, and flooring made of colorful and black and white tiles. The third and fourth levels of the belfry were repaired using bricks after earthquake damage in the 19th century. In 1892, the levels were repaired with bricks but the fourth level was damaged; it was restored after 2003.</p>
+          <p>The church was marked by the National Historical Institute in 1986 and declared a National Cultural Treasure by the National Museum in 2001.</p>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <section id="food" class="content-section" style="scroll-margin-top: 80px;">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h3>Local Flavors</h3>
-                <div class="title-underline"></div>
-                <p>Taste the heritage of Balayan</p>
-            </div>
+  <section id="ancestral" class="content-section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h3>Ancestral Houses</h3>
+        <div class="title-underline"></div>
+        <p>Bahay na Bato heritage along Fraternidad, Fe, Antorcha, Paz & Union streets</p>
+      </div>
+      <div class="grid-3col">
+        <div class="info-card" data-aos="zoom-in" data-aos-delay="100">
+          <i class="fas fa-home"></i>
+          <h4>Casa Cacao Filipina</h4>
+          <p>The Mariano Martinez House, called Casa Cacao Filipina because the family who owned it had a cacao business. Located across the municipal hall building.</p>
         </div>
-    </section>
-
-    <section id="bagoong" class="content-section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h3>Bagoong Balayan</h3>
-                <div class="title-underline"></div>
-                <p>World-famous fermented fish sauce</p>
-            </div>
-            <div class="heritage-highlight" data-aos="zoom-in">
-                <p><i class="fas fa-fish" style="color:var(--balayan-red);"></i> <strong>Bagoong Balayan</strong> is
-                    legendary—fermented fish sauce crafted for generations. It is one of the unique local products that
-                    draws visitors to the town, offering an authentic Batangueño culinary experience.</p>
-            </div>
+        <div class="info-card" data-aos="zoom-in" data-aos-delay="150">
+          <i class="fas fa-home"></i>
+          <h4>Lopez House</h4>
+          <p>At the corner of Antorcha and Don Sixto streets, this bahay na bato has two markers honoring siblings <strong>Sixto Lopez (1863-1947) and Clemencia Lopez (1872-1963)</strong> who were anti-US imperialists.</p>
         </div>
-    </section>
-
-    <section id="delicacies" class="content-section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h3>Local Delicacies</h3>
-                <div class="title-underline"></div>
-            </div>
-            <div class="grid-2col">
-                <div class="info-card" data-aos="fade-right">
-                    <i class="fas fa-utensils"></i>
-                    <h4>Lechon & Tapa</h4>
-                    <p>Fresh local lechon and tapa, often served during festivals and feasts.</p>
-                </div>
-                <div class="info-card" data-aos="fade-left">
-                    <i class="fas fa-mug-hot"></i>
-                    <h4>Kapeng Barako</h4>
-                    <p>Batangas' famous Liberica coffee, strong and aromatic.</p>
-                </div>
-            </div>
+        <div class="info-card" data-aos="zoom-in" data-aos-delay="200">
+          <i class="fas fa-home"></i>
+          <h4>Pedro Martinez House</h4>
+          <p>Characterized by <strong>Neo-Gothic doorways</strong> popular in the ancestral houses of Balayan, Taal, and Batangas City, with a Spanish-era gate and kinalabasa (squash-shaped) balusters. Located at Union and Paz streets.</p>
         </div>
-    </section>
-
-    <section id="stay" class="content-section" style="scroll-margin-top: 80px;">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h3>Where to Stay</h3>
-                <div class="title-underline"></div>
-                <p>Comfortable accommodations for your heritage tour</p>
-            </div>
+        <div class="info-card" data-aos="zoom-in" data-aos-delay="250">
+          <i class="fas fa-home"></i>
+          <h4>Telesforo Chuidian House</h4>
+          <p>At the corner of Putol and Paz streets, this house (now Apacible house) is notable for its wide capiz windows and walls with bamboo slat markings indicating how it was used to hold the palitada (plaster) during construction.</p>
         </div>
-    </section>
-
-    <section id="espinelis" class="content-section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h3>Espineli's Hotel</h3>
-                <div class="title-underline"></div>
-                <p>⭐⭐⭐⭐⭐ 8.8 Excellent (60+ reviews)</p>
-            </div>
-            <div class="grid-2col">
-                <div class="info-card" data-aos="fade-right">
-                    <i class="fas fa-hotel"></i>
-                    <h4>Contact & Location</h4>
-                    <div class="contact-info">
-                        <p><i class="fas fa-map-marker-alt" style="color:var(--balayan-red);"></i> 250 Dr. V. Ramos
-                            Street, Poblacion, Balayan</p>
-                        <p><i class="fas fa-phone" style="color:var(--balayan-red);"></i> +63 917 129-9634</p>
-                    </div>
-                    <ul>
-                        <li>Relatively new hotel with air-conditioned rooms</li>
-                        <li>Free WiFi and parking</li>
-                        <li>Free breakfast served at rooms</li>
-                        <li>24-hour front desk, restaurant on site</li>
-                        <li>Pets allowed</li>
-                    </ul>
-                    <p class="badge">From ₱1550 per night</p>
-                </div>
-                <div class="info-card" data-aos="fade-left">
-                    <i class="fas fa-star"></i>
-                    <h4>Guest Reviews</h4>
-                    <p>"Value for money, clean environment and very friendly staffs."</p>
-                    <p>"Basic toiletries (including room slippers) were provided."</p>
-                    <div class="rating">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                            class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> 8.8/10
-                    </div>
-                </div>
-            </div>
+        <div class="info-card" data-aos="zoom-in" data-aos-delay="300">
+          <i class="fas fa-home"></i>
+          <h4>Ermita Family House</h4>
+          <p>Framing the corner of Union and Paz streets, an impressive bahay na bato with its zaguan (lower level).</p>
         </div>
-    </section>
-
-    <section id="casa-ilustre" class="content-section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h3>Hotel Casa Ilustre</h3>
-                <div class="title-underline"></div>
-                <p>⭐⭐⭐⭐ 8.5 Excellent (74+ reviews)</p>
-            </div>
-            <div class="grid-2col">
-                <div class="info-card" data-aos="fade-right">
-                    <i class="fas fa-hotel"></i>
-                    <h4>Features</h4>
-                    <ul>
-                        <li>Free Wi-Fi throughout</li>
-                        <li>Free parking</li>
-                        <li>24-hour front desk</li>
-                        <li>Airport transfer available</li>
-                        <li>Family rooms</li>
-                        <li>City view from rooms</li>
-                    </ul>
-                    <p class="badge">From ₱1850 per night</p>
-                </div>
-                <div class="info-card" data-aos="fade-left">
-                    <i class="fas fa-star"></i>
-                    <h4>Guest Reviews</h4>
-                    <p>"Basic toiletries (including room slippers) were provided."</p>
-                    <div class="rating">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                            class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> 8.5/10
-                    </div>
-                </div>
-            </div>
+        <div class="info-card" data-aos="zoom-in" data-aos-delay="350">
+          <i class="fas fa-home"></i>
+          <h4>Vivencio Ramos House</h4>
+          <p>On Antorcha Street, this quaint house has undergone changes but retains much of its character. Also on Antorcha are Martinez family houses and two with Art Deco elements.</p>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <section id="my-place" class="content-section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h3>My Place Resort & Pavilion</h3>
-                <div class="title-underline"></div>
-                <p>⭐⭐⭐⭐ 8.4 Very Good</p>
-            </div>
-            <div class="grid-2col">
-                <div class="info-card" data-aos="fade-right">
-                    <i class="fas fa-swimming-pool"></i>
-                    <h4>Amenities</h4>
-                    <ul>
-                        <li>Outdoor swimming pool</li>
-                        <li>Free Wi-Fi</li>
-                        <li>Free parking</li>
-                        <li>Restaurant & BBQ facilities</li>
-                        <li>Airport pick-up service</li>
-                        <li>Room service</li>
-                        <li>Convenience store on site</li>
-                    </ul>
-                    <p class="badge">From ₱2050 per night</p>
-                </div>
-                <div class="info-card" data-aos="fade-left">
-                    <i class="fas fa-star"></i>
-                    <h4>Guest Reviews</h4>
-                    <p>"Staffs are attentive and courteous. Room is so clean so wide, so bango. Perfect stay. Kudos!"
-                    </p>
-                    <p>"They went over and beyond to help make our stay enjoyable."</p>
-                </div>
-            </div>
+  <section id="cemetery" class="content-section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h3>Spanish-era Cemetery</h3>
+        <div class="title-underline"></div>
+        <p>The grandest in Batangas province</p>
+      </div>
+      <div class="info-card" data-aos="flip-up">
+        <i class="fas fa-tombstone"></i>
+        <h4>Built with Reclaimed Materials</h4>
+        <p>Located on an elevated ground on Paz Street, this cemetery is the grandest of many Spanish-era burial grounds in Batangas. The old convent was torn down in 1857 and replaced with a new one (now Immaculate Conception College). Materials from the old convent were reused in the construction of the cemetery, including the retaining walls, the grand staircase, and the mortuary chapel at its center.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="senor-nazareno" class="content-section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h3>Señor Nazareno Chapel</h3>
+        <div class="title-underline"></div>
+        <p>Open every Friday until 6pm</p>
+      </div>
+      <div class="grid-2col">
+        <div class="info-card" data-aos="fade-right">
+          <i class="fas fa-place-of-worship"></i>
+          <h4>Miraculous Image</h4>
+          <p>Every Friday, devotees gather at this private chapel on Progreso Street to venerate the antique image of the dead Christ, said to be miraculous. It is past 6 p.m., but outside the chapel devotees are still standing outside the fence and closed gate. It is a normal sight every Friday, the only day the private chapel is open to the public (until 6 p.m.). Visitors come not only from the town or province but from other parts of the country as well.</p>
         </div>
-    </section>
-
-    <section id="kalika" class="content-section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h3>Kalika Balayan</h3>
-                <div class="title-underline"></div>
-                <p>⭐⭐⭐⭐ 7.6 Very Good</p>
-            </div>
-            <div class="info-card" data-aos="zoom-in">
-                <i class="fas fa-campground"></i>
-                <h4>Glamping & Resort Experience</h4>
-                <ul>
-                    <li>Cozy tent accommodations</li>
-                    <li>Free Wi-Fi</li>
-                    <li>24-hour front desk</li>
-                    <li>Pets allowed</li>
-                    <li>Laundry service</li>
-                    <li>Airport transfer available</li>
-                </ul>
-                <p class="badge">From ₱2200 per night</p>
-                <p><em>"I had a pleasant stay in the resort in a cozy tent."</em></p>
-            </div>
+        <div class="info-card" data-aos="fade-left">
+          <i class="fas fa-recycle"></i>
+          <h4>Heritage Structure</h4>
+          <p>The chapel itself is a heritage structure built using elements from an old house that used to stand in its place. These include the doors, sala dividers, balusters, capiz windows reused as ceiling accents, newels as rail posts, corbels as altar accents, and coral stone blocks as wall cladding.</p>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <section id="plan" class="content-section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h3>Plan Your Balayan Heritage Tour</h3>
-                <div class="title-underline"></div>
-            </div>
-            <div class="grid-2col">
-                <div class="info-card" data-aos="fade-right">
-                    <i class="fas fa-walking"></i>
-                    <h4>Suggested Walking Tour</h4>
-                    <ol style="list-style-position: inside; color:#2f4055;">
-                        <li>Immaculate Conception Church (1749-1795)</li>
-                        <li>Municipal Hall (American period presidencia)</li>
-                        <li>Casa Cacao Filipina (Martinez House)</li>
-                        <li>Lopez House (Antorcha St.) with historical markers</li>
-                        <li>Pedro Martinez House (Union & Paz) - Neo-Gothic doorways</li>
-                        <li>Telesforo Chuidian/Apacible House (Putol & Paz)</li>
-                        <li>Spanish-era Cemetery (Paz St.) - grandest in Batangas</li>
-                        <li>Señor Nazareno Chapel (Progreso St.) - open Fridays until 6pm</li>
-                        <li>Gabaldon school buildings (Paz St.)</li>
-                        <li>Balayan Baywalk (sunset views)</li>
-                    </ol>
-                </div>
-                <div class="info-card" data-aos="fade-left">
-                    <i class="fas fa-calendar-check"></i>
-                    <h4>Visitor Information</h4>
-                    <p><strong>Baywalk:</strong> Once a littered waterfront, it was cleaned in 2019 and provides views
-                        of Balayan Bay similar to Manila's Baywalk. Perfect for sunset strolls.</p>
-                    <p><strong>Friday schedule:</strong> Señor Nazareno Chapel open until 6pm - arrive early as devotees
-                        gather outside even after closing.</p>
-                    <p><strong>June 24:</strong> Come prepared to get wet during Parada ng Lechon water battles!</p>
-                </div>
-            </div>
+  <section id="schools" class="content-section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h3>Heritage School Buildings</h3>
+        <div class="title-underline"></div>
+      </div>
+      <div class="info-card" data-aos="zoom-in">
+        <i class="fas fa-school"></i>
+        <h4>Gabaldon-type Buildings</h4>
+        <p>Balayan has at least two heritage school buildings located inside the Balayan East and Balayan West central schools on Paz Street. Located across each other, the schools still have their original Gabaldon-type buildings which look nicely preserved and maintained.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="festivals" class="content-section" style="scroll-margin-top: 80px;">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h3>Festivals & Celebrations</h3>
+        <div class="title-underline"></div>
+        <p>Where faith and culture come alive</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="lechon" class="content-section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h3>Parada ng Lechon</h3>
+        <div class="title-underline"></div>
+        <p>The Lechon Festival · June 24</p>
+      </div>
+      <div class="grid-2col">
+        <div class="info-card" data-aos="fade-right">
+          <i class="fas fa-drumstick-bite"></i>
+          <h4>About the Festival</h4>
+          <p>Held annually on June 24, the Parada ng Lechon is a religious and cultural festival celebrated in honor of St. John the Baptist. It showcases decorated roasted pigs, lively street performances, and vibrant celebrations honoring the town's rich culinary heritage. Along with the parade is the practice of water dousing among community members and visitors.</p>
         </div>
-    </section>
-
-    <footer class="main-footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-about" data-aos="fade-up">
-                    <h5><i class="fas fa-heart" style="color:var(--balayan-red);"></i> Balayan Tourism</h5>
-                    <p>Municipality of Balayan, Batangas — first capital (1697-1732), heritage treasure, and home of the
-                        Parada ng Lechon. Come, walk our historic streets.</p>
-                </div>
-                <div class="footer-links" data-aos="fade-up" data-aos-delay="100">
-                    <h6>quick links</h6>
-                    <ul>
-                        <li><a href="#" onclick="smoothScrollTo('home'); return false;"><i
-                                    class="fas fa-chevron-right"></i> home</a></li>
-                        <li><a href="#" onclick="smoothScrollTo('heritage'); return false;"><i
-                                    class="fas fa-chevron-right"></i> heritage</a></li>
-                        <li><a href="#" onclick="smoothScrollTo('festivals'); return false;"><i
-                                    class="fas fa-chevron-right"></i> festivals</a></li>
-                        <li><a href="#" onclick="smoothScrollTo('food'); return false;"><i
-                                    class="fas fa-chevron-right"></i> food</a></li>
-                        <li><a href="#" onclick="smoothScrollTo('stay'); return false;"><i
-                                    class="fas fa-chevron-right"></i> stay</a></li>
-                    </ul>
-                </div>
-                <div class="footer-social" data-aos="fade-up" data-aos-delay="200">
-                    <h6>connect</h6>
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                    <p style="margin-top:1.5rem; color:var(--balayan-blue);"><i class="fas fa-envelope"
-                            style="color:var(--balayan-red);"></i> tourism@balayan.gov.ph</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <span><i class="fas fa-copyright"></i> 2026 Municipality of Balayan. All rights reserved.</span>
-                <span class="blue-dot">#BalayanHeritage <i class="fas fa-dot-circle"
-                        style="color:var(--balayan-red);"></i> </span>
-            </div>
+        <div class="info-card" data-aos="fade-left">
+          <i class="fas fa-water"></i>
+          <h4>Water Battles</h4>
+          <p>The day starts with water battles on the streets. In the morning, prepare to get wet with pails of water and water cannons from fire engines. After the water battles, lechon dressed in different ways are paraded through the streets. The festivities end with sumptuous feasts at every home.</p>
         </div>
-    </footer>
+      </div>
+    </div>
+  </section>
 
-    <!-- AOS Script for animations -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        // Initialize AOS with settings to prevent overflow
-        AOS.init({
-            duration: 800,
-            once: true,
-            offset: 100,
-            easing: 'ease-in-out',
-            disable: 'mobile' // Optional: disable on mobile to reduce chance of overflow
+  <section id="holyweek" class="content-section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h3>Holy Week Traditions</h3>
+        <div class="title-underline"></div>
+      </div>
+      <div class="info-card" data-aos="zoom-in">
+        <i class="fas fa-cross"></i>
+        <h4>Quintessential Processions</h4>
+        <p>Balayan is known for its solemn Holy Week processions, passing by its grand ancestral houses. These traditions are part of the intangible cultural heritage assets of this old town.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="fridays" class="content-section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h3>Friday Devotion</h3>
+        <div class="title-underline"></div>
+      </div>
+      <div class="info-card" data-aos="flip-up">
+        <i class="fas fa-pray"></i>
+        <h4>Señor Nazareno Chapel</h4>
+        <p>Every Friday, the private chapel on Progreso Street opens until 6pm for veneration of the miraculous image of the dead Christ. Devotees gather even outside after closing time.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="food" class="content-section" style="scroll-margin-top: 80px;">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h3>Local Flavors</h3>
+        <div class="title-underline"></div>
+        <p>Taste the heritage of Balayan</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="bagoong" class="content-section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h3>Bagoong Balayan</h3>
+        <div class="title-underline"></div>
+        <p>World-famous fermented fish sauce</p>
+      </div>
+      <div class="heritage-highlight" data-aos="zoom-in">
+        <p><i class="fas fa-fish" style="color:var(--balayan-red);"></i> <strong>Bagoong Balayan</strong> is legendary—fermented fish sauce crafted for generations. It is one of the unique local products that draws visitors to the town, offering an authentic Batangueño culinary experience.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="delicacies" class="content-section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h3>Local Delicacies</h3>
+        <div class="title-underline"></div>
+      </div>
+      <div class="grid-2col">
+        <div class="info-card" data-aos="fade-right">
+          <i class="fas fa-utensils"></i>
+          <h4>Lechon & Tapa</h4>
+          <p>Fresh local lechon and tapa, often served during festivals and feasts.</p>
+        </div>
+        <div class="info-card" data-aos="fade-left">
+          <i class="fas fa-mug-hot"></i>
+          <h4>Kapeng Barako</h4>
+          <p>Batangas' famous Liberica coffee, strong and aromatic.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="stay" class="content-section" style="scroll-margin-top: 80px;">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h3>Where to Stay</h3>
+        <div class="title-underline"></div>
+        <p>Comfortable accommodations for your heritage tour</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="espinelis" class="content-section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h3>Espineli's Hotel</h3>
+        <div class="title-underline"></div>
+        <p>⭐⭐⭐⭐⭐ 8.8 Excellent (60+ reviews)</p>
+      </div>
+      <div class="grid-2col">
+        <div class="info-card" data-aos="fade-right">
+          <i class="fas fa-hotel"></i>
+          <h4>Contact & Location</h4>
+          <div class="contact-info">
+            <p><i class="fas fa-map-marker-alt" style="color:var(--balayan-red);"></i> 250 Dr. V. Ramos Street, Poblacion, Balayan</p>
+            <p><i class="fas fa-phone" style="color:var(--balayan-red);"></i> +63 917 129-9634</p>
+          </div>
+          <ul>
+            <li>Relatively new hotel with air-conditioned rooms</li>
+            <li>Free WiFi and parking</li>
+            <li>Free breakfast served at rooms</li>
+            <li>24-hour front desk, restaurant on site</li>
+            <li>Pets allowed</li>
+          </ul>
+          <p class="badge">From ₱1550 per night</p>
+        </div>
+        <div class="info-card" data-aos="fade-left">
+          <i class="fas fa-star"></i>
+          <h4>Guest Reviews</h4>
+          <p>"Value for money, clean environment and very friendly staffs."</p>
+          <p>"Basic toiletries (including room slippers) were provided."</p>
+          <div class="rating">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> 8.8/10
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="casa-ilustre" class="content-section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h3>Hotel Casa Ilustre</h3>
+        <div class="title-underline"></div>
+        <p>⭐⭐⭐⭐ 8.5 Excellent (74+ reviews)</p>
+      </div>
+      <div class="grid-2col">
+        <div class="info-card" data-aos="fade-right">
+          <i class="fas fa-hotel"></i>
+          <h4>Features</h4>
+          <ul>
+            <li>Free Wi-Fi throughout</li>
+            <li>Free parking</li>
+            <li>24-hour front desk</li>
+            <li>Airport transfer available</li>
+            <li>Family rooms</li>
+            <li>City view from rooms</li>
+          </ul>
+          <p class="badge">From ₱1850 per night</p>
+        </div>
+        <div class="info-card" data-aos="fade-left">
+          <i class="fas fa-star"></i>
+          <h4>Guest Reviews</h4>
+          <p>"Basic toiletries (including room slippers) were provided."</p>
+          <div class="rating">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> 8.5/10
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="my-place" class="content-section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h3>My Place Resort & Pavilion</h3>
+        <div class="title-underline"></div>
+        <p>⭐⭐⭐⭐ 8.4 Very Good</p>
+      </div>
+      <div class="grid-2col">
+        <div class="info-card" data-aos="fade-right">
+          <i class="fas fa-swimming-pool"></i>
+          <h4>Amenities</h4>
+          <ul>
+            <li>Outdoor swimming pool</li>
+            <li>Free Wi-Fi</li>
+            <li>Free parking</li>
+            <li>Restaurant & BBQ facilities</li>
+            <li>Airport pick-up service</li>
+            <li>Room service</li>
+            <li>Convenience store on site</li>
+          </ul>
+          <p class="badge">From ₱2050 per night</p>
+        </div>
+        <div class="info-card" data-aos="fade-left">
+          <i class="fas fa-star"></i>
+          <h4>Guest Reviews</h4>
+          <p>"Staffs are attentive and courteous. Room is so clean so wide, so bango. Perfect stay. Kudos!"</p>
+          <p>"They went over and beyond to help make our stay enjoyable."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="kalika" class="content-section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h3>Kalika Balayan</h3>
+        <div class="title-underline"></div>
+        <p>⭐⭐⭐⭐ 7.6 Very Good</p>
+      </div>
+      <div class="info-card" data-aos="zoom-in">
+        <i class="fas fa-campground"></i>
+        <h4>Glamping & Resort Experience</h4>
+        <ul>
+          <li>Cozy tent accommodations</li>
+          <li>Free Wi-Fi</li>
+          <li>24-hour front desk</li>
+          <li>Pets allowed</li>
+          <li>Laundry service</li>
+          <li>Airport transfer available</li>
+        </ul>
+        <p class="badge">From ₱2200 per night</p>
+        <p><em>"I had a pleasant stay in the resort in a cozy tent."</em></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="plan" class="content-section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h3>Plan Your Balayan Heritage Tour</h3>
+        <div class="title-underline"></div>
+      </div>
+      <div class="grid-2col">
+        <div class="info-card" data-aos="fade-right">
+          <i class="fas fa-walking"></i>
+          <h4>Suggested Walking Tour</h4>
+          <ol style="list-style-position: inside; color:#2f4055;">
+            <li>Immaculate Conception Church (1749-1795)</li>
+            <li>Municipal Hall (American period presidencia)</li>
+            <li>Casa Cacao Filipina (Martinez House)</li>
+            <li>Lopez House (Antorcha St.) with historical markers</li>
+            <li>Pedro Martinez House (Union & Paz) - Neo-Gothic doorways</li>
+            <li>Telesforo Chuidian/Apacible House (Putol & Paz)</li>
+            <li>Spanish-era Cemetery (Paz St.) - grandest in Batangas</li>
+            <li>Señor Nazareno Chapel (Progreso St.) - open Fridays until 6pm</li>
+            <li>Gabaldon school buildings (Paz St.)</li>
+            <li>Balayan Baywalk (sunset views)</li>
+          </ol>
+        </div>
+        <div class="info-card" data-aos="fade-left">
+          <i class="fas fa-calendar-check"></i>
+          <h4>Visitor Information</h4>
+          <p><strong>Baywalk:</strong> Once a littered waterfront, it was cleaned in 2019 and provides views of Balayan Bay similar to Manila's Baywalk. Perfect for sunset strolls.</p>
+          <p><strong>Friday schedule:</strong> Señor Nazareno Chapel open until 6pm - arrive early as devotees gather outside even after closing.</p>
+          <p><strong>June 24:</strong> Come prepared to get wet during Parada ng Lechon water battles!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="main-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about" data-aos="fade-up">
+          <h5><i class="fas fa-heart" style="color:var(--balayan-red);"></i> Balayan Tourism</h5>
+          <p>Municipality of Balayan, Batangas — first capital (1697-1732), heritage treasure, and home of the Parada ng Lechon. Come, walk our historic streets.</p>
+        </div>
+        <div class="footer-links" data-aos="fade-up" data-aos-delay="100">
+          <h6>quick links</h6>
+          <ul>
+            <li><a href="#" onclick="smoothScrollTo('home'); return false;"><i class="fas fa-chevron-right"></i> home</a></li>
+            <li><a href="#" onclick="smoothScrollTo('heritage'); return false;"><i class="fas fa-chevron-right"></i> heritage</a></li>
+            <li><a href="#" onclick="smoothScrollTo('festivals'); return false;"><i class="fas fa-chevron-right"></i> festivals</a></li>
+            <li><a href="#" onclick="smoothScrollTo('food'); return false;"><i class="fas fa-chevron-right"></i> food</a></li>
+            <li><a href="#" onclick="smoothScrollTo('stay'); return false;"><i class="fas fa-chevron-right"></i> stay</a></li>
+          </ul>
+        </div>
+        <div class="footer-social" data-aos="fade-up" data-aos-delay="200">
+          <h6>connect</h6>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+          <p style="margin-top:1.5rem; color:var(--balayan-blue);"><i class="fas fa-envelope" style="color:var(--balayan-red);"></i> tourism@balayan.gov.ph</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span><i class="fas fa-copyright"></i> 2026 Municipality of Balayan. All rights reserved.</span>
+        <span class="blue-dot">#BalayanHeritage <i class="fas fa-dot-circle" style="color:var(--balayan-red);"></i> </span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- AOS Script for animations -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    // Initialize AOS
+    AOS.init({
+      duration: 800,
+      once: true,
+      offset: 100,
+      easing: 'ease-in-out'
+    });
+
+    // Universal smooth scroll function
+    function smoothScrollTo(sectionId) {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
         });
+      }
+      // Close mobile menu after clicking a link
+      const navLinks = document.getElementById('navLinks');
+      if (navLinks.classList.contains('show')) {
+        navLinks.classList.remove('show');
+        const toggleIcon = document.querySelector('.mobile-menu-toggle i');
+        if (toggleIcon) toggleIcon.className = 'fas fa-bars';
+      }
+    }
 
-        // Universal smooth scroll function
-        function smoothScrollTo(sectionId) {
-            const element = document.getElementById(sectionId);
-            if (element) {
-                element.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-            // Close mobile menu after clicking a link
-            const navLinks = document.getElementById('navLinks');
-            if (navLinks.classList.contains('show')) {
-                navLinks.classList.remove('show');
-                const toggleIcon = document.querySelector('.mobile-menu-toggle i');
-                if (toggleIcon) toggleIcon.className = 'fas fa-bars';
-            }
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('mobileMenuToggle');
+    const navLinks = document.getElementById('navLinks');
+    const dropdownIcons = document.querySelectorAll('.dropdown-icon');
+
+    if (menuToggle) {
+      menuToggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        navLinks.classList.toggle('show');
+        // Change icon
+        const icon = this.querySelector('i');
+        if (navLinks.classList.contains('show')) {
+          icon.className = 'fas fa-times';
+        } else {
+          icon.className = 'fas fa-bars';
         }
+      });
+    }
 
-        // Mobile menu toggle
-        const menuToggle = document.getElementById('mobileMenuToggle');
-        const navLinks = document.getElementById('navLinks');
-        const dropdownIcons = document.querySelectorAll('.dropdown-icon');
-
-        if (menuToggle) {
-            menuToggle.addEventListener('click', function (e) {
-                e.preventDefault();
-                navLinks.classList.toggle('show');
-                // Change icon
-                const icon = this.querySelector('i');
-                if (navLinks.classList.contains('show')) {
-                    icon.className = 'fas fa-times';
-                } else {
-                    icon.className = 'fas fa-bars';
-                }
-            });
-        }
-
-        // Handle main nav link clicks for dropdowns on mobile
-        const mainNavLinks = document.querySelectorAll('.main-nav-link');
-        mainNavLinks.forEach(link => {
-            link.addEventListener('click', function (e) {
-                // On mobile, prevent default and toggle dropdown
-                if (window.innerWidth <= 768) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('data-target');
-                    const dropdown = document.getElementById('dropdown-' + targetId);
-                    if (dropdown) {
-                        dropdown.classList.toggle('show');
-                        // Rotate chevron
-                        const icon = this.querySelector('.dropdown-icon');
-                        if (dropdown.classList.contains('show')) {
-                            icon.style.transform = 'rotate(180deg)';
-                        } else {
-                            icon.style.transform = 'rotate(0deg)';
-                        }
-                    }
-                } else {
-                    // On desktop, the main nav link (Home, Heritage, etc.) could scroll to the section if desired
-                    e.preventDefault();
-                    const targetSection = this.getAttribute('data-target');
-                    smoothScrollTo(targetSection);
-                }
-            });
-        });
-
-        // For desktop, ensure dropdowns work with hover (already in CSS)
-        // For mobile, we need to close dropdowns when clicking outside
-        document.addEventListener('click', function (e) {
-            if (window.innerWidth <= 768) {
-                if (!e.target.closest('.nav-item')) {
-                    // Close all dropdowns
-                    document.querySelectorAll('.dropdown-content.show').forEach(dd => {
-                        dd.classList.remove('show');
-                    });
-                    // Reset chevrons
-                    document.querySelectorAll('.dropdown-icon').forEach(icon => {
-                        icon.style.transform = 'rotate(0deg)';
-                    });
-                }
+    // Handle main nav link clicks for dropdowns on mobile
+    const mainNavLinks = document.querySelectorAll('.main-nav-link');
+    mainNavLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        // On mobile, prevent default and toggle dropdown
+        if (window.innerWidth <= 768) {
+          e.preventDefault();
+          const targetId = this.getAttribute('data-target');
+          const dropdown = document.getElementById('dropdown-' + targetId);
+          if (dropdown) {
+            dropdown.classList.toggle('show');
+            // Rotate chevron
+            const icon = this.querySelector('.dropdown-icon');
+            if (dropdown.classList.contains('show')) {
+              icon.style.transform = 'rotate(180deg)';
+            } else {
+              icon.style.transform = 'rotate(0deg)';
             }
-        });
+          }
+        } else {
+          // On desktop, the main nav link (Home, Heritage, etc.) could scroll to the section if desired
+          e.preventDefault();
+          const targetSection = this.getAttribute('data-target');
+          smoothScrollTo(targetSection);
+        }
+      });
+    });
 
-        // Make all footer quick links work with smooth scroll
-        document.querySelectorAll('.footer-links a').forEach(link => {
-            link.addEventListener('click', function (e) {
-                e.preventDefault();
-                const onclickAttr = this.getAttribute('onclick');
-                if (onclickAttr) {
-                    const match = onclickAttr.match(/'([^']+)'/);
-                    if (match) {
-                        smoothScrollTo(match[1]);
-                    }
-                }
-            });
-        });
+    // For desktop, ensure dropdowns work with hover (already in CSS)
+    // For mobile, we need to close dropdowns when clicking outside
+    document.addEventListener('click', function(e) {
+      if (window.innerWidth <= 768) {
+        if (!e.target.closest('.nav-item')) {
+          // Close all dropdowns
+          document.querySelectorAll('.dropdown-content.show').forEach(dd => {
+            dd.classList.remove('show');
+          });
+          // Reset chevrons
+          document.querySelectorAll('.dropdown-icon').forEach(icon => {
+            icon.style.transform = 'rotate(0deg)';
+          });
+        }
+      }
+    });
 
-        // Handle logo click
-        document.querySelector('.logo-area').addEventListener('click', function (e) {
-            e.preventDefault();
-            smoothScrollTo('home');
-        });
+    // Make all footer quick links work with smooth scroll
+    document.querySelectorAll('.footer-links a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const onclickAttr = this.getAttribute('onclick');
+        if (onclickAttr) {
+          const match = onclickAttr.match(/'([^']+)'/);
+          if (match) {
+            smoothScrollTo(match[1]);
+          }
+        }
+      });
+    });
 
-        // Highlight active nav item on scroll (simplified)
-        window.addEventListener('scroll', function () {
-            const sections = document.querySelectorAll('.content-section, #home');
-            const navLinks = document.querySelectorAll('.nav-links > .nav-item > a.main-nav-link');
+    // Handle logo click
+    document.querySelector('.logo-area').addEventListener('click', function(e) {
+      e.preventDefault();
+      smoothScrollTo('home');
+    });
 
-            let currentSection = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100;
-                const sectionHeight = section.clientHeight;
-                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-                    currentSection = section.getAttribute('id');
-                }
-            });
+    // Highlight active nav item on scroll (simplified)
+    window.addEventListener('scroll', function() {
+      const sections = document.querySelectorAll('.content-section, #home');
+      const navLinks = document.querySelectorAll('.nav-links > .nav-item > a.main-nav-link');
+      
+      let currentSection = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 100;
+        const sectionHeight = section.clientHeight;
+        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+          currentSection = section.getAttribute('id');
+        }
+      });
 
-            navLinks.forEach(link => {
-                link.style.color = '#1e293b'; // default color
-                const target = link.getAttribute('data-target');
-                if (target === 'home' && currentSection === 'home') {
-                    link.style.color = 'var(--balayan-blue)';
-                } else if (target === 'heritage' && (currentSection === 'church' || currentSection === 'ancestral' || currentSection === 'cemetery' || currentSection === 'senor-nazareno' || currentSection === 'schools' || currentSection === 'heritage')) {
-                    link.style.color = 'var(--balayan-blue)';
-                } else if (target === 'festivals' && (currentSection === 'lechon' || currentSection === 'holyweek' || currentSection === 'fridays' || currentSection === 'festivals')) {
-                    link.style.color = 'var(--balayan-blue)';
-                } else if (target === 'food' && (currentSection === 'bagoong' || currentSection === 'delicacies' || currentSection === 'food')) {
-                    link.style.color = 'var(--balayan-blue)';
-                } else if (target === 'stay' && (currentSection === 'espinelis' || currentSection === 'casa-ilustre' || currentSection === 'my-place' || currentSection === 'kalika' || currentSection === 'stay')) {
-                    link.style.color = 'var(--balayan-blue)';
-                }
-            });
-        });
-    </script>
+      navLinks.forEach(link => {
+        link.style.color = '#1e293b'; // default color
+        const target = link.getAttribute('data-target');
+        if (target === 'home' && currentSection === 'home') {
+          link.style.color = 'var(--balayan-blue)';
+        } else if (target === 'heritage' && (currentSection === 'church' || currentSection === 'ancestral' || currentSection === 'cemetery' || currentSection === 'senor-nazareno' || currentSection === 'schools' || currentSection === 'heritage')) {
+          link.style.color = 'var(--balayan-blue)';
+        } else if (target === 'festivals' && (currentSection === 'lechon' || currentSection === 'holyweek' || currentSection === 'fridays' || currentSection === 'festivals')) {
+          link.style.color = 'var(--balayan-blue)';
+        } else if (target === 'food' && (currentSection === 'bagoong' || currentSection === 'delicacies' || currentSection === 'food')) {
+          link.style.color = 'var(--balayan-blue)';
+        } else if (target === 'stay' && (currentSection === 'espinelis' || currentSection === 'casa-ilustre' || currentSection === 'my-place' || currentSection === 'kalika' || currentSection === 'stay')) {
+          link.style.color = 'var(--balayan-blue)';
+        }
+      });
+    });
+  </script>
 </body>
-
 </html>
